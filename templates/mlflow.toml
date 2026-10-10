@@ -1,0 +1,21 @@
+# mlflow-tracking settings of this project. Committed: no secrets here; the
+# login is in ~/.mlflow/credentials of whoever runs (scripts/doctor.py checks).
+
+# The tracking server. MLFLOW_TRACKING_URI overrides it. Without a server:
+# "sqlite:///logs/mlflow.db", a database relative to this file, artifacts in
+# logs/mlruns/ beside it (SKILL.md, "Local store").
+tracking_uri = "https://mlflow.example.org"
+
+# The MLflow experiment runs go to. MLFLOW_EXPERIMENT_NAME overrides it.
+experiment = "my-project"
+
+# Optional. Usually artifacts go through the server, which writes to its own
+# store, and the client needs nothing else. Only if the server has
+# MLFLOW_ENABLE_PROXY_MULTIPART_UPLOAD on, large artifacts go in parts
+# straight to its S3 by presigned URL, and tasks must reach that endpoint:
+# host:port here lets doctor.py check it.
+# artifacts_endpoint = "s3.example.org:443"
+
+# Optional. The checkpoint root is a volume several users' tasks write to,
+# with no group in common (an HPC volume): checkpoint_dir creates it 1777.
+# shared_checkpoints = true
